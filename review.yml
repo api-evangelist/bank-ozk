@@ -1,0 +1,64 @@
+aid: bank-ozk
+name: Bank OZK
+review:
+  question: Does Bank OZK expose a first-party public developer API, portal, or downloadable OpenAPI specification?
+  answer: false
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Bank OZK, a state-chartered regional bank headquartered in Little Rock,
+    Arkansas (Nasdaq: OZK, ~$40.8B total assets at year-end 2025), does not
+    operate a first-party public developer portal and publishes no
+    downloadable OpenAPI/Swagger specifications. A probe of the conventional
+    developer subdomain (developer.ozk.com) failed to resolve, and api.ozk.com
+    returned HTTP 404. No first-party API reference, sandbox, OAuth2/OIDC
+    developer authorization surface, or API key issuance flow is documented on
+    ozk.com. Bank OZK is not listed as a Financial Data Exchange (FDX)
+    participant and has not published a specific CFPB Section 1033 (Personal
+    Financial Data Rights) data-access posture. According to open-banking
+    directories, consumer-permissioned account data is reachable only
+    indirectly through third-party aggregation, with Plaid documented as the
+    supporting aggregator. This is an identity-only record with no public API
+    surface — the honest and correct result for this institution.
+  posture:
+    firstPartyDeveloperPortal: false
+    developerPortalURL: null
+    developerPortalHTTPStatus: 'developer.ozk.com: DNS did not resolve (curl exit 000); api.ozk.com: 404'
+    downloadableOpenAPI: false
+    fdxParticipant: false
+    section1033PosturePublished: false
+    aggregatorOnly: true
+    aggregators:
+      - Plaid
+    authModel: none documented (no first-party developer authorization surface)
+    specProvenance: none (no first-party specification published or harvested)
+  transports:
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: No documented first-party public REST API. Public web presence (ozk.com) is a marketing/online-banking site, not an API.
+    - protocol: FDX
+      documented: false
+      note: No documented FDX-conformant data-access API, whether direct or via Akoya/Finicity/MX.
+sources:
+  - url: https://www.ozk.com/
+    type: Website
+    note: Corporate/online-banking site. HTTP 200. No developer or API section in footer or navigation.
+  - url: https://www.openbankingtracker.com/provider/bank-ozk-personal
+    type: Directory
+    note: States Bank OZK's direct API availability may be limited and that accounts are supported by one aggregator (Plaid); no first-party portal, sandbox, or OpenAPI listed.
+  - url: https://developer.ozk.com
+    type: Probe
+    note: Conventional developer subdomain did not resolve (curl exit code 000).
+  - url: https://api.ozk.com
+    type: Probe
+    note: Returned HTTP 404. No public API host documented.
+actions:
+  apisYmlUpdated: true
+  reason: |
+    No public API surface exists to catalog. apis[] left empty; common[]
+    populated only with verified live pages (Website, Support, Privacy/Terms,
+    Learning Center, LinkedIn). Open-finance posture recorded honestly as
+    aggregator-only via Plaid, with no FDX participation and no published
+    Section 1033 posture.
