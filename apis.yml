@@ -28,6 +28,8 @@ modified: '2026-07-23'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: Login
+  url: https://www.ozk.com/login
 - type: DomainSecurity
   url: security/bank-ozk-domain-security.yml
 - type: Website
