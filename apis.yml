@@ -1,5 +1,8 @@
 aid: bank-ozk
 url: https://raw.githubusercontent.com/api-evangelist/bank-ozk/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
+x-api-posture-note: "This is an honest identity-only profile with no public API surface."
 name: Bank OZK
 kind: company
 description: Bank OZK is a regional bank headquartered in Little Rock, Arkansas, tracing
